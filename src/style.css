@@ -194,3 +194,26 @@ header {
 buyBtn:hover {
   cursor: pointer;
 }
+
+/* footer */
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: #313131;
+  padding: 20px;
+  margin-top: 250px;
+}
+
+.contact-number {
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 30px;
+}
+
