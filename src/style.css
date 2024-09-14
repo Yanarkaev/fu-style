@@ -191,8 +191,17 @@ header {
   border: none;
   font-size: 20px;
 }
-buyBtn:hover {
+.buyBtn:hover {
   cursor: pointer;
+}
+
+.product-list{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+  gap: 40px;
 }
 
 /* footer */
