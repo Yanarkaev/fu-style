@@ -37,17 +37,56 @@ let data = [
   },
 ];
 
+let cartData = [];
+
 let productListWrapper = document.querySelector(".product-list");
+let cartToggleButton = document.querySelector(".cartIcon");
+let cartWrapper = document.querySelector(".cart");
+let cartDataWrapper = document.querySelector(".osnova");
+
+function renderCartData(cartData) {
+  cartDataWrapper.innerHTML = "";
+  for (let i = 0; i < cartData.length; i++) {
+    cartDataWrapper.innerHTML += `
+     <div class="tovar">
+              <img class="img_card" src=${cartData[i].img} alt="" />
+              <div class="cart-product-info">
+                <p class="cart-product-name">${cartData[i].name}</p>
+                <p class="cart-product-price">${cartData[i].price}$</p>
+              </div>
+              <button class="delete">Удалить</button>
+            </div>`;
+  }
+}
+
+renderCartData(cartData);
 
 function renderData(data) {
+  cartDataWrapper.innerHTML = "";
   for (let i = 0; i < data.length; i++) {
     productListWrapper.innerHTML += `<article class="past">
         <img src=${data[i].img} alt="">
         <p>${data[i].name}</p>
         <p>${data[i].price}$</p>
-      <button class="buyBtn">Купить</button>
+      <button class="buyBtn">${data[i].inCart ? "В корзине" : "Купить"}</button>
       </article>`;
+  }
+
+  let buyBtns = document.querySelectorAll(".buyBtn");
+
+  for (let i = 0; i < buyBtns.length; i++) {
+    buyBtns[i].addEventListener("click", function () {
+      cartData.push(data[i]);
+      data[i] = { ...data[i], inCart: true };
+      renderData(data);
+      renderCartData(cartData);
+      console.log(data);
+    });
   }
 }
 
 renderData(data);
+
+cartToggleButton.addEventListener("click", function () {
+  cartWrapper.classList.toggle("hide");
+});
