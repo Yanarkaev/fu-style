@@ -1,5 +1,5 @@
 body {
-  /* margin: 0 auto; */
+  margin: 0;
   font-family: sans-serif;
   background-color: #fff8e7;
 }
@@ -7,65 +7,71 @@ body {
 /* шапка */
 
 header {
-    padding: 20px;
-    background-color: #D9D9D9;
+  padding: 20px;
+  background-color: #d9d9d9a3;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
 }
 
 .header-container {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
 }
 
 .intro {
-    font-size: 50px;
-    background-image: url(./assets/intro-img.jpg);
-    background-repeat: no-repeat;
-    height: 100vh;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: #D9D9D9
+  font-size: 50px;
+  background-image: url(./assets/intro-img.jpg);
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #d9d9d9;
 }
 
 .intro h1 {
-    text-align: center;
-    margin: 0;
-    font-size: 192px;
+  text-align: center;
+  margin: 0;
+  font-size: 192px;
 }
 
 .intro-inner {
-    display: flex;
-    justify-content: space-between;
-    max-width: 750px;
-    width: 100%;
-    margin: 50px auto 0;
+  display: flex;
+  justify-content: space-between;
+  max-width: 750px;
+  width: 100%;
+  margin: 50px auto 0;
 }
 
 .intro-slogan {
-    font-size: 30px;
-    padding-left: 15px;
-    border-left: 5px solid #D9D9D9;
+  font-size: 30px;
+  padding-left: 15px;
+  border-left: 5px solid #d9d9d9;
 }
 
 .intro-slogan p {
-    margin: 0;
-    font-size: 42px;
+  margin: 0;
+  font-size: 42px;
 }
 
 .intro-button {
-    align-self: flex-end;
+  align-self: flex-end;
 }
 
 .intro-button button {
-    font-size: 20px;
-    /* border-radius: 10px; */
-    color: #353535;
-    background-color: #D9D9D9;
-    border: 0;
-    padding: 8px 30px;
-    font-size: 32px;
+  font-size: 20px;
+  /* border-radius: 10px; */
+  color: #353535;
+  background-color: #d9d9d9;
+  border: 0;
+  padding: 8px 30px;
+  font-size: 32px;
 }
 
 /* Корзина */
@@ -99,6 +105,7 @@ header {
   position: absolute;
   width: 100%;
   right: 0;
+  top: 110px;
 }
 
 .img_card {
@@ -140,8 +147,8 @@ header {
   cursor: pointer;
 }
 
-.hide{
-    display: none;
+.hide {
+  display: none;
 }
 
 /* Кароточки */
@@ -195,7 +202,7 @@ header {
   cursor: pointer;
 }
 
-.product-list{
+.product-list {
   display: flex;
   flex-wrap: wrap;
   max-width: 1200px;
@@ -225,4 +232,3 @@ footer {
   display: flex;
   gap: 30px;
 }
-
