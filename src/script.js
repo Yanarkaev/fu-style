@@ -49,6 +49,8 @@ let productListWrapper = document.querySelector(".product-list");
 let cartToggleButton = document.querySelector(".cartIcon");
 let cartWrapper = document.querySelector(".cart");
 let cartDataWrapper = document.querySelector(".osnova");
+let orderSum = document.querySelector(".order-sum");
+let orderBtn = document.querySelector(".zakaz");
 
 let scrollBtn = document.querySelector(".scrollBtn");
 
@@ -57,6 +59,14 @@ scrollBtn.addEventListener("click", function () {
     behavior: "smooth",
   });
 });
+
+function calcSum(cartData) {
+  let sum = 0;
+  for (let i = 0; i < cartData.length; i++) {
+    sum += cartData[i].price;
+  }
+  orderSum.innerHTML = sum;
+}
 
 function renderCartData(cartData) {
   cartDataWrapper.innerHTML = "";
@@ -76,11 +86,12 @@ function renderCartData(cartData) {
 
   for (let i = 0; i < deleteBtns.length; i++) {
     deleteBtns[i].addEventListener("click", function () {
-      // let index = data.indexOf(data.find((el) => el.id === cartData[i].id));
-      // data[index] = {...data[index], inCart: false}
+      let index = data.indexOf(data.find((el) => el.id == cartData[i].id));
+      data[index] = { ...data[index], inCart: false };
+      renderData(data);
       cartData.splice(i, 1);
       renderCartData(cartData);
-      // renderData(data)
+      calcSum(cartData);
     });
   }
 }
@@ -94,7 +105,9 @@ function renderData(data) {
         <img src=${data[i].img} alt="">
         <p>${data[i].name}</p>
         <p>${data[i].price}$</p>
-      <button class="buyBtn">${data[i].inCart ? "В корзине" : "Купить"}</button>
+      <button class="buyBtn">${
+        data[i].inCart == true ? "В корзине" : "Купить"
+      }</button>
       </article>`;
   }
 
@@ -108,10 +121,24 @@ function renderData(data) {
         renderData(data);
         renderCartData(cartData);
         console.log(data);
+        calcSum(cartData);
       });
     }
   }
 }
+
+orderBtn.addEventListener("click", function () {
+  cartData = [];
+  let resetData = [];
+  renderCartData(cartData);
+  calcSum(cartData);
+
+  for (let i = 0; i < data.length; i++) {
+    resetData.push({ ...data[i], inCart: false });
+  }
+
+  renderData(resetData);
+});
 
 renderData(data);
 
