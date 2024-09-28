@@ -129,11 +129,25 @@ function renderData(data) {
         data[i] = { ...data[i], inCart: true };
         renderData(data);
         renderCartData(cartData);
+        console.log(data);
         calcSum(cartData);
       });
     }
   }
 }
+
+orderBtn.addEventListener("click", function () {
+  cartData = [];
+  let resetData = [];
+  renderCartData(cartData);
+  calcSum(cartData);
+
+  for (let i = 0; i < data.length; i++) {
+    resetData.push({ ...data[i], inCart: false });
+  }
+
+  renderData(resetData);
+});
 
 renderData(data);
 
