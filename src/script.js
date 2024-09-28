@@ -51,8 +51,9 @@ let cartWrapper = document.querySelector(".cart");
 let cartDataWrapper = document.querySelector(".osnova");
 let orderSum = document.querySelector(".order-sum");
 let orderBtn = document.querySelector(".zakaz");
-
 let scrollBtn = document.querySelector(".scrollBtn");
+let cartInner = document.querySelector(".cart_inner");
+let emptyCart = document.querySelector(".empty_cart");
 
 scrollBtn.addEventListener("click", function () {
   productListWrapper.scrollIntoView({
@@ -70,6 +71,14 @@ function calcSum(cartData) {
 
 function renderCartData(cartData) {
   cartDataWrapper.innerHTML = "";
+  if (cartData.length == 0) {
+    emptyCart.classList.remove("hide");
+    cartInner.classList.add("hide");
+  } else {
+    emptyCart.classList.add("hide");
+    cartInner.classList.remove("hide");
+  }
+
   for (let i = 0; i < cartData.length; i++) {
     cartDataWrapper.innerHTML += `
      <div class="tovar">
@@ -120,25 +129,11 @@ function renderData(data) {
         data[i] = { ...data[i], inCart: true };
         renderData(data);
         renderCartData(cartData);
-        console.log(data);
         calcSum(cartData);
       });
     }
   }
 }
-
-orderBtn.addEventListener("click", function () {
-  cartData = [];
-  let resetData = [];
-  renderCartData(cartData);
-  calcSum(cartData);
-
-  for (let i = 0; i < data.length; i++) {
-    resetData.push({ ...data[i], inCart: false });
-  }
-
-  renderData(resetData);
-});
 
 renderData(data);
 
